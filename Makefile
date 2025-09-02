@@ -25,7 +25,7 @@ INIT =				$(INIT_DIR)/init.c
 EVENTS =			$(EVENTS_DIR)/events.c $(EVENTS_DIR)/mouse.c $(EVENTS_DIR)/keys.c $(EVENTS_DIR)/move.c
 RAYCASTING =		$(RAYCASTING_DIR)/raycaster.c $(RAYCASTING_DIR)/dda.c
 TEX = 				$(TEX_DIR)/init.c $(TEX_DIR)/textures.c
-RENDER = 			$(RENDER_DIR)/render.c $(RENDER_DIR)/minimap.c
+RENDER = 			$(RENDER_DIR)/render.c $(RENDER_DIR)/minimap.c $(RENDER_DIR)/animation.c
 UTILS = 			$(UTILS_DIR)/cleanup.c $(UTILS_DIR)/utils.c
 
 SRCS =				$(SRC_DIR)/main.c $(INIT) $(EVENTS) $(RAYCASTING) $(TEX) $(RENDER) $(UTILS) \
@@ -56,6 +56,6 @@ fclean:				clean
 re:					fclean all
 
 vg:
-	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME)
+	valgrind --track-fds=yes --leak-check=full --show-leak-kinds=all --track-origins=yes ./$(NAME) maps/m.cub
 
 .PHONY:				all clean fclean re

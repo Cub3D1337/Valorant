@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 14:33:15 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/02 11:47:39 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ typedef struct s_cub
 	t_player	p;
 	// Textures
 	t_img_texture	textures[5];
+	t_img_texture	sprites[8];
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/01 16:58:51 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/02 15:06:05 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,8 @@ void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result)
 			dda.side = VERTICAL;
 		}
 		// Check Map Bounds
-		if (dda.map_pos.x < 0 || dda.map_pos.x >= cub->map.h
-		|| dda.map_pos.y < 0 || dda.map_pos.y >= cub->map.w)
+		if (dda.map_pos.x < 0 || dda.map_pos.x >= cub->map.w
+		|| dda.map_pos.y < 0 || dda.map_pos.y >= cub->map.h)
 			break ;
 		// Wall && Close Door Hit
 		if (cub->map.array[dda.map_pos.y][dda.map_pos.x] == '1'

@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:50:00 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/31 10:06:43 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/02 13:07:02 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,5 +17,8 @@
 
 int		init_textures(t_cub *cub, t_config *cfg);
 void	mapping_textures(t_cub *cub, t_tex_ctx *ctx);
+// Animated sprites
+int		init_sprites(t_cub *cub);
+void	animation(t_cub *cub);
 
 #endif
