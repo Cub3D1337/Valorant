@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/02 12:55:40 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/02 13:34:50 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/03 14:46:16 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,20 +74,20 @@ static void	draw_sprite(t_cub *cub, t_img_texture *t, int scale)
 	}
 }
 
-void animation(t_cub *cub)
+void	animation(t_cub *cub)
 {
-    static int frame = 0;        // current sprite frame [0..7]
-    static int counter = 0;      // delay counter
+	static int frame = 0;        // current sprite frame [0..7]
+	static int counter = 0;      // delay counter
 
-    int delay = 10; // higher = slower animation (adjust per FPS)
+	int delay = 10; // higher = slower animation (adjust per FPS)
 
-    // Draw current frame
-    draw_sprite(cub, &cub->sprites[frame], 1);
+	// Draw current frame
+	draw_sprite(cub, &cub->sprites[frame], 1);
 
-    // Advance every `delay` frames
-    if (++counter >= delay)
-    {
-        counter = 0;
-        frame = (frame + 1) % 8; // loop back to 0
-    }
+	// Advance every `delay` frames
+	if (++counter >= delay)
+	{
+		counter = 0;
+		frame = (frame + 1) % 8; // loop back to 0
+	}
 }

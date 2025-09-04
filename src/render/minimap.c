@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/20 14:35:11 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/01 18:10:02 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/03 16:41:26 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,18 @@ void	draw_init_minimap(t_cub *cub)
 		{
 			if (cub->map.array[pos.y][pos.x] == '1')
 				color = 0xffffff;
+			//! ====================== Door =========================
 			else if (cub->map.array[pos.y][pos.x] == 'D')
+            {
 				color = 0x5555ff;
+				cub->door_entities[cub->door_count].map_x = pos.x;
+                cub->door_entities[cub->door_count].map_y = pos.y;
+                cub->door_entities[cub->door_count].frame = 0;
+                cub->door_entities[cub->door_count].state = DOOR_CLOSED;
+                cub->door_entities[cub->door_count].timer = 0;
+                cub->door_count++;
+            }
+			//! ====================== Door =========================
 			// else if (cub->map.array[pos.y][pos.x] == 'd')
 			// 	color = 0x9999ff;
 			else
