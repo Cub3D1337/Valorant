@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/26 15:40:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/01 18:06:31 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 19:00:25 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,25 +26,44 @@ static void	toggle_escape(int keycode, t_cub *cub)
 	}
 }
 
-t_bool	check_door_state(t_cub *cub, t_dda *dda)
+t_bool check_door_state(t_cub *cub, t_dda *dda)
 {
-	char	*cell;
-
-	if (dda->map_pos.x < 0 || dda->map_pos.x >= cub->map.w
-	|| dda->map_pos.y < 0 || dda->map_pos.y >= cub->map.h)
-		return (false);
-	cell = &cub->map.array[dda->map_pos.y][dda->map_pos.x];
-	if (*cell == 'D')
-	{
-		*cell = 'd';
-		return (false);
-	}
-	else if (*cell == 'd')
-	{
-		*cell = 'D';
-		return (false);
-	}
-	return (true);
+    for (int i = 0; i < cub->door_count; ++i)
+    {
+        t_door_anim *door = &cub->door_entities[i];
+        if (door->map_x == dda->map_pos.x && door->map_y == dda->map_pos.y)
+        {
+            switch (door->state)
+            {
+                case DOOR_CLOSED:
+                    door->state = DOOR_OPENING;
+                    door->timer = 0;
+                    printf("Door state: CLOSED -> OPENING\n");
+                    break;
+                case DOOR_OPEN:
+                    door->state = DOOR_CLOSING;
+                    door->timer = 0;
+                    printf("Door state: OPEN -> CLOSING\n");
+                    break;
+                case DOOR_OPENING:
+                    // reverse animation to closing
+                    door->state = DOOR_CLOSING;
+                    door->timer = 0;
+                    printf("Door state: OPENING -> CLOSING\n");
+                    break;
+                case DOOR_CLOSING:
+                    // reverse to opening
+                    door->state = DOOR_OPENING;
+                    door->timer = 0;
+                    printf("Door state: CLOSING -> OPENING\n");
+                    break;
+                default:
+                    break;
+            }
+            return (true); // found and handled
+        }
+    }
+    return (false);
 }
 
 static void	toggle_door(t_cub *cub)
@@ -55,7 +74,8 @@ static void	toggle_door(t_cub *cub)
 	
 	i = 0;
 	ray_dir = (t_pointd){cub->p.cosA, cub->p.sinA};
-	setup_dda(cub, &dda, ray_dir);
+	// TODO: check this new setup prototype
+	setup_dda(cub, &dda, cub->p.pos, ray_dir);
 	while (i < TRACK_DOOR_CELL)
 	{
 		if (dda.hypotenuse_dist.x <= dda.hypotenuse_dist.y)
@@ -70,7 +90,7 @@ static void	toggle_door(t_cub *cub)
 			dda.map_pos.y += dda.dir_step.y;	
 			dda.side = VERTICAL;
 		}
-		if (check_door_state(cub, &dda) == false)
+		if (check_door_state(cub, &dda))
 			break ;
 		i++;
 	}

@@ -6,11 +6,62 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:31 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 14:55:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 19:00:18 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
+
+void update_doors(t_cub *cub)
+{
+    for (int i = 0; i < cub->door_count; ++i)
+    {
+        t_door_anim *door = &cub->door_entities[i];
+
+        // Only update if door is in motion
+        if (door->state == DOOR_CLOSED || door->state == DOOR_OPEN)
+            continue;
+
+        // increment timer; only update frame when it reaches the delay
+        if (++door->timer < DOOR_TIMER_DELAY)
+            continue;
+        door->timer = 0;
+
+        if (door->state == DOOR_OPENING)
+        {
+            if (door->frame < DOOR_FRAMES - 1)
+            {
+                door->frame++;
+                printf("Door opening: frame %d\n", door->frame); // Debug
+            }
+            else
+            {
+                // reached final open frame
+                door->state = DOOR_OPEN;
+                // mark cell as non-blocking
+                cub->map.array[door->map_y][door->map_x] = 'd';
+                printf("Door fully open\n"); // Debug
+            }
+        }
+        else if (door->state == DOOR_CLOSING)
+        {
+            if (door->frame > 0)
+            {
+                door->frame--;
+                printf("Door closing: frame %d\n", door->frame); // Debug
+            }
+            else
+            {
+                // fully closed
+                door->state = DOOR_CLOSED;
+                // mark cell as blocking again
+                cub->map.array[door->map_y][door->map_x] = 'D';
+                printf("Door fully closed\n"); // Debug
+            }
+        }
+    }
+}
+
 
 int	ft_loop_hook(t_cub *cub)
 {
@@ -32,6 +83,7 @@ int	ft_loop_hook(t_cub *cub)
 	}
 	mouse_handler(cub);
 	move(cub);
+	update_doors(cub);
 	render(cub);
 	return (EXIT_SUCCESS);
 }
