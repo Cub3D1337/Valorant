@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 14:58:04 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/01 16:59:00 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 14:43:53 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include "includes.h"
 
 void	raycasting(t_cub *cub);
-void	dda(t_cub *cub, t_pointd ray_dir, t_dda_result *result);
-void	setup_dda(t_cub *cub, t_dda *dda, t_pointd ray_dir);
+void	dda(t_cub *cub, t_raycast *r, t_dda_result *result);
+void	setup_dda(t_cub *cub, t_dda *dda, t_pointd start_pos, t_pointd ray_dir);
 
 #endif

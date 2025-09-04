@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:24:14 by abnsila           #+#    #+#             */
-/*   Updated: 2025/08/31 17:03:57 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 14:59:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ typedef enum e_side
 
 typedef enum e_tex_side
 {
-	SOUTH,
-	NORTH,
-	WEST,
-	EAST,
-	DOOR,
+	SOUTH_TEX,
+	NORTH_TEX,
+	WEST_TEX,
+	EAST_TEX,
+	DOOR_TEX,
 }			t_tex_side;
 
 typedef enum e_door_status

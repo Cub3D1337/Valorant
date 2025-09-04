@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:15:21 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/01 18:03:28 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 15:51:12 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define Y_SENSITIVITY 0.5
 
 # define TEX_NUM 5
+
+#define EPSILON 0.0001f
 
 enum e_events_hooks
 {

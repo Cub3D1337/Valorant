@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 10:28:06 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/02 11:47:39 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 18:16:57 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,32 @@ typedef struct	s_fps
 	double		frame_duration;
 }				t_fps;
 
+
+//! ======================== Door ===========================
+typedef enum e_door_state
+{
+    DOOR_CLOSED,
+    DOOR_OPENING,
+    DOOR_OPEN,
+    DOOR_CLOSING
+}   t_door_state;
+
+#define MAX_DOORS 64
+#define DOOR_FRAMES 17          // frames indexed 0..8
+#define DOOR_TIMER_DELAY 10     // adjust animation speed
+
+
+typedef struct s_door_anim
+{
+	int             map_x;
+    int             map_y;
+    int             frame;       // current frame [0..8]
+    t_door_state    state;
+    int             timer;       // delay counter
+}   t_door_anim;
+//! ======================== Door ===========================
+
+
 typedef struct s_cub
 {
 	void		*mlx;
@@ -95,6 +121,7 @@ typedef struct s_cub
 	// Textures
 	t_img_texture	textures[5];
 	t_img_texture	sprites[8];
+	t_img_texture	doors[MAX_DOORS];
 	//TODO: Default calculation
 	double	fov;
 	// Projection Plan
@@ -105,8 +132,11 @@ typedef struct s_cub
 	t_pointd	mouse;
 	t_bool		track_mouse;
 	t_fps		fps;
-	// Door
+	//! ======================== Door ===========================
 	t_bool		trigger_door;
+	t_door_anim     door_entities[MAX_DOORS];
+    int             door_count;
+	//! ======================== Door ===========================
 }			t_cub;
 
 #endif
