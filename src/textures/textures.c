@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/07 10:48:21 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/02 16:58:24 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/04 18:57:45 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,17 +30,34 @@ static void	get_tex(t_cub *cub,
 	cord.y = (ctx->result.map_pos.y);
 	cord.x = (ctx->result.map_pos.x);
 
-	if (cub->map.array[cord.y][cord.x] == 'D')
-		data->tex = &cub->textures[DOOR];
+	// if (cub->map.array[cord.y][cord.x] == 'D')
+	// 	data->tex = &cub->textures[DOOR];
+	
+	//! ======================== Door ===========================
+	// Always check if there’s a door entity at this cell
+	for (int i = 0; i < cub->door_count; i++)
+	{
+		if (cub->door_entities[i].map_x == cord.x &&
+			cub->door_entities[i].map_y == cord.y)
+		{
+			int frame = cub->door_entities[i].frame;
+			// printf("Door Frame: %d\n", frame);
+			data->tex = &cub->doors[frame];
+			return ; // stop here, door has priority
+		}
+	}
+	//! ======================== Door ===========================
+
+
 	// Commented just for testing door only
-	else if (ctx->result.side == VERTICAL && ctx->result.dir_step.y == 1)
-		data->tex = &cub->textures[NORTH];
+	if (ctx->result.side == VERTICAL && ctx->result.dir_step.y == 1)
+		data->tex = &cub->textures[NORTH_TEX];
 	else if (ctx->result.side == VERTICAL && ctx->result.dir_step.y == -1)
-		data->tex = &cub->textures[SOUTH];
+		data->tex = &cub->textures[SOUTH_TEX];
 	else if (ctx->result.side == HORIZONTAL && ctx->result.dir_step.x == 1)
-		data->tex = &cub->textures[EAST];
+		data->tex = &cub->textures[EAST_TEX];
 	else if (ctx->result.side == HORIZONTAL && ctx->result.dir_step.x == -1)
-		data->tex = &cub->textures[WEST];
+		data->tex = &cub->textures[WEST_TEX];
 }
 
 static void	setup(t_cub *cub, t_tex_ctx *ctx, t_texture_data *data)
@@ -86,7 +103,8 @@ void	mapping_textures(t_cub *cub, t_tex_ctx *ctx)
 
 		data.color = get_texel(data.tex, data.tex_cord.x, data.tex_cord.y);
 		if (check_minimap_edge(ctx->x, ctx->start_y))
-			cub->img.pixels[ctx->start_y * cub->img.pitch + ctx->x] = data.color;
+			if (data.color != 0xFF000000)
+				cub->img.pixels[ctx->start_y * cub->img.pitch + ctx->x] = data.color;
 		data.tex_pos += data.step;
 		ctx->start_y++;
 	}
