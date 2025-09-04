@@ -3,7 +3,7 @@ static char *c32bc79b92384d19ded3725a6a32d14a3GOduaHofpYHBLMt[] = {
 /* columns rows colors chars-per-pixel */ 
 "64 64 21 2 ",
 "   c black",
-"x  c white",
+"x  c None",
 "#  c gray66",
 "$  c gray33",
 ">  c #ECECEC",
