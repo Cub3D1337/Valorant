@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:56:26 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/03 13:27:48 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/05 15:04:14 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,10 +80,11 @@ int	init_cub(t_cub	*cub, t_config *cfg)
 	cub->fps.frames = 0;
 	cub->fps.last_time = 0.0;
 	cub->fps.last_frame_time = 0.0;
-	//! Door
+	//! ======================== Door ===========================
 	cub->trigger_door = false;
 	cub->door_count = 0;
     ft_bzero(cub->door_entities, sizeof(cub->door_entities));
+	//! ======================== Door ===========================
 	return (EXIT_SUCCESS);
 }
 

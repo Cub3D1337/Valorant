@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 18:18:32 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/04 16:21:34 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/05 15:45:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_block_type	get_block_type(t_cub *cub, int x, int y)
 	// Check Map Bounds
 	if (x < 0 || x >= cub->map.w
 	|| y < 0 || y >= cub->map.h)
-		return (NONE);
+		return (OUT);
 	// Wall && Close Door Hit
 	else if (cub->map.array[y][x] == '1')
 		return (WALL);
@@ -111,7 +111,7 @@ void	dda(t_cub *cub, t_raycast *r, t_dda_result *result)
 			dda.side = VERTICAL;
 		}
 		block_type = get_block_type(cub, dda.map_pos.x, dda.map_pos.y);
-		if (block_type != NONE)
+		if (block_type == WALL || block_type == DOOR)
 			result->block_type = get_block_type(cub, dda.map_pos.x, dda.map_pos.y);
 	}
 	compute_ray_lenght(cub, &dda, r, result);

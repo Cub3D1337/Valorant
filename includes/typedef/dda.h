@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/30 15:27:26 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/04 16:17:25 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/05 15:32:55 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef enum s_block_type
 {
 	NONE,
+	OUT,
 	WALL,
 	DOOR,
 }			t_block_type;

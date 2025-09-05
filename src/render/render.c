@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/27 11:54:43 by hwahmane          #+#    #+#             */
-/*   Updated: 2025/09/03 15:28:20 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/05 15:01:56 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,6 @@ void	render(t_cub *cub)
 	draw_minimap(cub);
 	raycasting(cub);
 	draw_player(cub);
-	animation(cub);
 	fps_notif = ft_conststrjoin(ft_strdup("FPS: "), ft_itoa(cub->fps.fps));
 	mlx_put_image_to_window(cub->mlx, cub->mlx_win,
 		cub->img.img_ptr, 0, 0);

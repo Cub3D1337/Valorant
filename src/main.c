@@ -6,7 +6,7 @@
 /*   By: abnsila <abnsila@student.1337.ma>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/22 13:48:05 by abnsila           #+#    #+#             */
-/*   Updated: 2025/09/02 20:52:22 by abnsila          ###   ########.fr       */
+/*   Updated: 2025/09/05 15:02:19 by abnsila          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,9 @@ int	main(int ac, char **av)
 	print_config(&cfg);
 	init_cub(&cub, &cfg);
 	init_textures(&cub, &cfg);
-	// =====================
+	//! ======================== Door ===========================
 	init_doors(&cub);
-	init_sprites(&cub);
-	// =====================
+	//! ======================== Door ===========================
 	init_image_buffer(&cub);
 	init_map_image_buffer(&cub);
 	init_events(&cub);
